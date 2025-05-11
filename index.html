@@ -1,6 +1,37 @@
-# vascosmota.github.io
-Hi. My name is Vasco, I am Data Scientist based off Lisboa, Portugal.
+---
+layout: default
+title: Home
+---
 
-When I am not making sure data stays inside the pipelines in the cloud (cloud pipelines, who would have thought of that)), I will be reading, books, newspapers, magazines, to (try to) understand our world a little better.
+<div class="posts">
+  {% for post in paginator.posts %}
+  <div class="post">
+    <h1 class="post-title">
+      <a href="{{ post.url }}">
+        {{ post.title }}
+      </a>
+    </h1>
 
-As a worker in the "data industry", I feel a certain responsability to understand how these new techonlogical developments will impact our society. Digital law is on its infancy and we need to fight for our Digital Rights.
+    <span class="post-date">{{ post.date | date_to_string }}</span>
+
+    {{ post.content }}
+  </div>
+  {% endfor %}
+</div>
+
+<div class="pagination">
+  {% if paginator.next_page %}
+    <a class="pagination-item older" href="{{ site.baseurl }}page{{paginator.next_page}}">Older</a>
+  {% else %}
+    <span class="pagination-item older">Older</span>
+  {% endif %}
+  {% if paginator.previous_page %}
+    {% if paginator.page == 2 %}
+      <a class="pagination-item newer" href="{{ site.baseurl }}">Newer</a>
+    {% else %}
+      <a class="pagination-item newer" href="{{ site.baseurl }}page{{paginator.previous_page}}">Newer</a>
+    {% endif %}
+  {% else %}
+    <span class="pagination-item newer">Newer</span>
+  {% endif %}
+</div>
